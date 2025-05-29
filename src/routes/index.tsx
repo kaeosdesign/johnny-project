@@ -6,7 +6,7 @@ import {
   onMount,
   onCleanup,
 } from "solid-js";
-import { Helexia, LeroyMerlin } from "~/components/Logo";
+import { JohnnyBoy, LeroyMerlin } from "~/components/Logo";
 
 const [realTimePower, setRealTimePower] = createSignal(0);
 const [cumulativeEnergy, setcumulativeEnergy] = createSignal(0);
@@ -29,18 +29,7 @@ const [selfSufficiency, setSelfSufficiency] = createSignal(0);
 const fetchData = async (): Promise<any> => {
   "use server";
   const response = await fetch(
-    "https://uni004eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=KrxkNm5kkIqIjebwe9GEoOw3eyEpvpH2", // LMRO_1_Bucuresti_Pallady
-    // "https://uni003eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=scMjstMcKemNehkIylqxDNGeJhxFIrPN" // LMRO_2_Targoviste
-    // "https://uni003eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=2zjM2sxxJ4ibq5f4dbJOnmQ78fxiQB8x" // LMRO_3_Colosseum
-    // "https://uni003eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=Lb81pDGDPdJP0clGNL9rAJdvFF4j9ytq" // LMRO_4_Bragadiru
-    // "https://uni004eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=ccq2fijH6p6DrilFqtvBdiq2qaujnO9x" // LMRO_5_Brasov
-    // "https://uni004eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=nkQqDxxMJqb9EdsGOIBwgtyMvmHAelCM" // LMRO_6_Cluj
-    // "https://uni003eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=tho85MKyGL2q0CGwgmwHqvO1Q2lJ0Ms9" // LMRO_7_Constanta
-    // "https://uni003eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=Lc02th1b80oM2e0ot1uJ074bBnAwtHPp" // LMRO_8_Craiova_Severin
-    // "https://uni003eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=kHqMuDxovIPGevHuflHK2CQ1n91e8Qfq" // LMRO_9_Oradea
-    // "https://uni004eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=eDbxciwrlDsJo4sfqf7hh6lJ14j5c6KL" // LMRO_10_Ploiesti
-    // "https://uni003eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=LjAMpFvrL17umHQ4mq2n6MdM5h5jeKfH" // LMRO_11_Timisoara
-    // "https://uni004eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=JIDaQ5IfhmqMqEsp9oEKtPGyJxrpgswu" // LMRO_12_Brasov_Astra
+    "https://uni004eu5.fusionsolar.huawei.com/rest/pvms/web/kiosk/v1/station-kiosk-file?kk=Q5bK7jqK0r5BnAysa1cmMtz4gLFzDxj3" // SMH R&D Johnny boy
   );
   return await response.json();
 };
@@ -58,21 +47,21 @@ export default function Home() {
       setdailyEnergy(parsed.realKpi.dailyEnergy);
       setyearEnergy(parsed.realKpi.yearEnergy / 1000);
       setco2ReductionByYear(
-        parsed.socialContribution.co2ReductionByYear / 1000,
+        parsed.socialContribution.co2ReductionByYear / 1000
       );
       setco2Reduction(parsed.socialContribution.co2Reduction / 1000);
       setequivalentTreePlantingByYear(
-        parsed.socialContribution.equivalentTreePlantingByYear,
+        parsed.socialContribution.equivalentTreePlantingByYear
       );
       setstandardCoalSavings(
-        parsed.socialContribution.standardCoalSavings / 1000,
+        parsed.socialContribution.standardCoalSavings / 1000
       );
       setstandardCoalSavingsByYear(
-        parsed.socialContribution.standardCoalSavingsByYear / 1000,
+        parsed.socialContribution.standardCoalSavingsByYear / 1000
       );
       setSelfSufficiency((parsed.realKpi.realTimePower / 250) * 100);
       setEquivalentTreePlanting(
-        parsed.socialContribution.equivalentTreePlanting,
+        parsed.socialContribution.equivalentTreePlanting
       );
       setcomponentFlag(parsed.socialContribution.componentFlag);
       return parsed;
@@ -102,8 +91,7 @@ export default function Home() {
       <div class="mb-[0.5vmax] max-md:flex-wrap md:flex flex-grow-0 items-center justify-between rounded-[1.25vmax] border-[0.1vmax] border-slate-300/50 bg-slate-100 px-[1.5vmax] py-[0.75vmax]">
         <div class="max-md:hidden">
           <h1 class="text-left text-[1.5vmax] font-medium">
-            Centrală electrică fotovoltaică dezvoltată și exploatată de către
-            Helexia
+            Proiect de monitorizare
           </h1>
           <h2 class="text-left text-[1.15vmax] text-slate-500">
             {plantAddress()}
@@ -113,8 +101,8 @@ export default function Home() {
           <h1 class="text-left text-[2vmax] font-medium md:hidden">
             {stationName()}
           </h1>
-          <span class="flex h-auto w-[12vmax] max-h-[40px] items-center justify-center">
-            <Helexia />
+          <span class="flex h-auto w-[8vmax] max-h-[48px] items-center justify-center mt-2">
+            <JohnnyBoy />
           </span>
         </div>
       </div>
@@ -320,20 +308,7 @@ export default function Home() {
                 </Show>
                 <div class="h-full grow flex flex-col text-slate-400"></div>
               </div>
-            </div>
-            {/* Branding */}
-            <div class="md:flex w-full flex-grow-0 items-center justify-center rounded-[1.25vmax] border-[0.1vmax] border-slate-200/50 bg-slate-50">
-              <h3 class="flex items-end justify-center text-left text-[2vmax] font-medium">
-                <span class="flex items-start justify-end">Magazinul tău</span>
-                <span class="mx-[0.25vmax] flex h-[5vmax] w-auto max-w-[18rem] flex-grow-0 shrink-0 items-end pt-[0.5vmax] pb-[0.25vmax]">
-                  {/* <Auchan /> */}
-                  <LeroyMerlin />
-                </span>
-                <span class="flex items-end justify-start">
-                  trece la energie solară
-                </span>
-              </h3>
-            </div>
+            </div>            
           </div>
         </div>
       </div>

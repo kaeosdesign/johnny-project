@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vinxi dev",
     "build": "vinxi build",
-    "start": "vinxi start"
+    "start": "vinxi start",
+    "cf:preview": "npx wrangler --cwd dist/ pages dev",
+    "cf:deploy": "npx wrangler --cwd dist/ pages deploy"
   },
   "dependencies": {
     "@solidjs/router": "^0.15.3",
